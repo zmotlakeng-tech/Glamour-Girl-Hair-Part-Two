@@ -1,0 +1,580 @@
+/* ==========================================================================
+   Glamour Girl Hair — Part 2 Stylesheet
+   Desktop-first: base rules target desktop, then two media queries narrow
+   the layout down for tablet (max-width: 1024px) and mobile (max-width: 640px).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------
+   1. CSS RESET
+   Removes browser default spacing/sizing differences so the site looks
+   consistent across Chrome, Firefox, Safari, etc. before any of our own
+   styling is applied.
+   -------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;   /* padding/border included in an element's width, not added on top */
+    margin: 0;
+    padding: 0;
+}
+
+img, picture {
+    max-width: 100%;          /* images never overflow their container */
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input, textarea, select, button {
+    font: inherit;            /* form fields use the page font instead of the OS default */
+}
+
+/* --------------------------------------------------------------------
+   2. DESIGN TOKENS
+   Every colour, font and spacing value used on the site is defined once
+   here as a CSS custom property, then referenced everywhere else. This
+   is what lets the whole site's look be changed from one place.
+   Palette and fonts come directly from the approved proposal
+   (Section 5.1 Colour Scheme, 5.2 Typography).
+   -------------------------------------------------------------------- */
+:root {
+    /* Colour */
+    --color-juniper:      #2F4A3D;   /* juniper green — headers, nav, footer, buttons */
+    --color-juniper-dark: #1D2F27;   /* hover/active state for juniper elements */
+    --color-sage:         #7C9473;   /* sage green — accents, links, CTAs */
+    --color-sage-dark:    #5F7355;   /* hover/active state for sage elements */
+    --color-sage-light:   #E4EBDF;   /* light sage tint — review cards, subtle backgrounds */
+    --color-cream:        #F6F4EE;   /* light section background */
+    --color-white:        #FFFFFF;
+    --color-text:         #24291F;   /* body text on light backgrounds */
+    --color-text-soft:    #5E6A56;   /* secondary/meta text */
+    --color-border:       #D9E0D2;
+
+    /* Typography */
+    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Type scale — 1.25 ratio from a 1rem (16px) base */
+    --text-sm:   0.875rem;
+    --text-base: 1rem;
+    --text-md:   1.125rem;
+    --text-lg:   1.25rem;
+    --text-xl:   1.563rem;
+    --text-2xl:  1.953rem;
+    --text-3xl:  2.441rem;
+    --text-4xl:  3.052rem;
+
+    /* Spacing scale — used for margin/padding/gap throughout */
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-5: 3rem;
+    --space-6: 4.5rem;
+
+    --container-width: 72rem;     /* max content width on large screens */
+    --radius: 2px;                /* minimal, sharp corners suit the luxury/editorial brief */
+}
+
+/* --------------------------------------------------------------------
+   3. BASE / TYPOGRAPHY
+   -------------------------------------------------------------------- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-white);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-juniper);
+}
+
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-2xl); margin-bottom: var(--space-3); }
+h3 { font-size: var(--text-lg); }
+
+p { max-width: 65ch; }         /* keeps body copy from stretching too wide to read comfortably */
+
+/* Visible keyboard focus on every interactive element, not just links —
+   required for accessible navigation, and part of Part 2's UX brief. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--color-sage);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition-duration: 0.01ms !important; }
+}
+
+/* --------------------------------------------------------------------
+   4. LAYOUT — header, navigation, page containers, footer
+   Shared structure that repeats identically on all five pages.
+   -------------------------------------------------------------------- */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--color-juniper);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+.logo-img {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+    background-color: var(--color-white);
+    border-radius: 999px;
+    padding: 2px;
+}
+
+.site-header nav ul {
+    display: flex;
+    gap: var(--space-4);
+}
+
+.site-header nav a {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-cream);
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.site-header nav a:hover,
+.site-header nav a:focus-visible {
+    color: var(--color-white);
+    border-bottom-color: var(--color-sage);
+}
+
+.site-header nav a.active {
+    color: var(--color-white);
+    border-bottom-color: var(--color-sage);
+}
+
+main {
+    max-width: var(--container-width);
+    margin-inline: auto;
+    padding: var(--space-5) var(--space-4);
+}
+
+main > h1 {
+    margin-bottom: var(--space-4);
+}
+
+main > section + section {
+    margin-top: var(--space-6);   /* consistent rhythm between stacked sections */
+}
+
+.site-footer {
+    background-color: var(--color-juniper);
+    color: var(--color-cream);
+    text-align: center;
+    padding: var(--space-4);
+    font-size: var(--text-sm);
+    margin-top: var(--space-6);
+}
+
+/* --------------------------------------------------------------------
+   5. BUTTONS & INTERACTIVE STATES
+   :hover / :focus / :active pseudo-classes give visible feedback —
+   required by Part 2, section 2.5.
+   -------------------------------------------------------------------- */
+.btn {
+    display: inline-block;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-sage);
+    color: var(--color-white);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+    background-color: var(--color-sage-dark);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* --------------------------------------------------------------------
+   6. HOMEPAGE — hero + intro
+   -------------------------------------------------------------------- */
+.hero {
+    position: relative;
+    min-height: 32rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.hero::after {
+    /* dark gradient over the photo so white text stays readable */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.15) 60%);
+    z-index: -1;
+}
+
+.hero-text {
+    padding: var(--space-5);
+    color: var(--color-white);
+    max-width: 40rem;
+}
+
+.hero-text h1 {
+    color: var(--color-white);
+}
+
+.hero-text .subheadline {
+    font-size: var(--text-md);
+    margin-block: var(--space-2) var(--space-3);
+    max-width: 45ch;
+}
+
+.intro {
+    text-align: center;
+    max-width: 48rem;
+    margin-inline: auto;
+}
+
+.intro p {
+    margin-inline: auto;
+    color: var(--color-text-soft);
+}
+
+/* --------------------------------------------------------------------
+   7. ABOUT PAGE — founder story, mission, difference list
+   -------------------------------------------------------------------- */
+.founder {
+    display: grid;
+    grid-template-columns: 18rem 1fr;
+    gap: var(--space-5);
+    align-items: center;
+}
+
+.founder img {
+    border-radius: var(--radius);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.difference ul {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.difference li {
+    padding-left: var(--space-3);
+    border-left: 2px solid var(--color-sage);
+}
+
+/* --------------------------------------------------------------------
+   8. PRODUCTS PAGE — grid of product cards + reviews
+   -------------------------------------------------------------------- */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-4);
+}
+
+.product-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 16px rgba(10, 10, 10, 0.12);
+}
+
+.product-card img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+.product-card h2 {
+    font-size: var(--text-md);
+    padding: var(--space-2) var(--space-2) 0;
+}
+
+.product-card .price {
+    font-weight: 600;
+    color: var(--color-sage);
+    padding: 0 var(--space-2);
+}
+
+.product-card .stock {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    padding: 0 var(--space-2) var(--space-2);
+}
+
+.reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-4);
+}
+
+.reviews h2 {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.review {
+    background-color: var(--color-sage-light);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.review img {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.review blockquote {
+    padding: var(--space-3);
+}
+
+.review footer {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+}
+
+/* --------------------------------------------------------------------
+   9. ENQUIRY PAGE — form styling
+   -------------------------------------------------------------------- */
+.enquiry-form {
+    display: grid;
+    gap: var(--space-1);
+    max-width: 32rem;
+    margin-top: var(--space-4);
+}
+
+.enquiry-form label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-top: var(--space-2);
+}
+
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea {
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background-color: var(--color-white);
+}
+
+.enquiry-form input:focus-visible,
+.enquiry-form select:focus-visible,
+.enquiry-form textarea:focus-visible {
+    border-color: var(--color-sage);
+}
+
+.enquiry-form button {
+    margin-top: var(--space-3);
+    justify-self: start;
+}
+
+/* --------------------------------------------------------------------
+   10. CONTACT PAGE — details + map embeds
+   -------------------------------------------------------------------- */
+.contact-details p {
+    font-size: var(--text-md);
+    margin-bottom: var(--space-2);
+}
+
+.contact-details a {
+    color: var(--color-sage);
+    border-bottom: 1px solid var(--color-sage);
+}
+
+.contact-details a:hover,
+.contact-details a:focus-visible {
+    color: var(--color-sage-dark);
+}
+
+.locations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.locations h2 {
+    grid-column: 1 / -1;
+}
+
+.map-embed {
+    aspect-ratio: 4 / 3;
+}
+
+.map-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: var(--radius);
+}
+
+/* --------------------------------------------------------------------
+   11. WHATSAPP FLOATING BUTTON — present on every page
+   -------------------------------------------------------------------- */
+.whatsapp-float {
+    position: fixed;
+    bottom: var(--space-3);
+    right: var(--space-3);
+    background-color: var(--color-sage);
+    color: var(--color-white);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    padding: var(--space-2) var(--space-3);
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(10, 10, 10, 0.25);
+    z-index: 20;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+    background-color: var(--color-sage-dark);
+    transform: translateY(-2px);
+}
+
+.whatsapp-float:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   12. RESPONSIVE DESIGN
+   Desktop-first: the rules above are the desktop layout. These two
+   breakpoints narrow things down for tablet and mobile. Relative units
+   (rem/em, already used throughout) mean text and spacing scale together
+   if a visitor changes their browser's font size, instead of staying a
+   fixed pixel size regardless of the reader's needs.
+   ========================================================================== */
+
+/* ---- Tablet: 1024px and narrower ---- */
+@media (max-width: 1024px) {
+    :root {
+        --text-3xl: 2rem;
+        --text-2xl: 1.75rem;
+    }
+
+    main {
+        padding-inline: var(--space-3);
+    }
+
+    .founder {
+        grid-template-columns: 14rem 1fr;
+        gap: var(--space-3);
+    }
+
+    .hero {
+        min-height: 26rem;
+    }
+}
+
+/* ---- Mobile: 640px and narrower ---- */
+@media (max-width: 640px) {
+    .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
+    }
+
+    .site-header nav ul {
+        flex-wrap: wrap;
+        gap: var(--space-2) var(--space-3);
+    }
+
+    main {
+        padding-block: var(--space-4);
+    }
+
+    main > section + section {
+        margin-top: var(--space-5);
+    }
+
+    .hero {
+        min-height: 22rem;
+    }
+
+    .hero-text {
+        padding: var(--space-3);
+    }
+
+    .founder {
+        grid-template-columns: 1fr;   /* photo stacks above the text instead of beside it */
+        text-align: center;
+    }
+
+    .founder img {
+        margin-inline: auto;
+        width: 10rem;
+    }
+
+    .locations {
+        grid-template-columns: 1fr;   /* two maps stack instead of sitting side by side */
+    }
+
+    .whatsapp-float {
+        bottom: var(--space-2);
+        right: var(--space-2);
+        padding: var(--space-1) var(--space-2);
+    }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiry | Glamour Girl Hair</title>
+    <meta name="description" content="Ask about bundle lengths, colours, pricing, or book a professional install.">
+    <link rel="icon" href="images/glamour-logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="logo">
+            <img src="images/glamour-logo.jpeg" alt="Glamour Girl Hair logo" class="logo-img">
+            Glamour Girl Hair
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="enquiry.html" class="active">Enquiry</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Make an Enquiry</h1>
+        <p>Have a question about a bundle, an install, or stock? Fill in the form below and we'll get back to you.</p>
+
+        <form action="#" method="post" class="enquiry-form">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone">
+
+            <label for="interest">What are you interested in?</label>
+            <select id="interest" name="interest">
+                <option value="bundles">Bundles</option>
+                <option value="wigs">Wigs</option>
+                <option value="install">Professional Install</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit" class="btn btn-primary">Send Enquiry</button>
+        </form>
+    </main>
+
+    <a href="https://wa.me/27000000000" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
+        WhatsApp Us
+    </a>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Glamour Girl Hair. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
