@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Glamour Girl Hair — Part 2 Stylesheet
+   Glamour Girl Hair — Stylesheet (Part 2 base + Part 3 additions)
    Desktop-first: base rules target desktop, then two media queries narrow
    the layout down for tablet (max-width: 1024px) and mobile (max-width: 640px).
    ========================================================================== */
@@ -118,13 +118,17 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-    outline: 2px solid var(--color-sage);
+    outline: 3px solid var(--color-sage-dark);
     outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    * { transition-duration: 0.01ms !important; }
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
 }
 
 /* --------------------------------------------------------------------
@@ -228,13 +232,13 @@ main > section + section {
 }
 
 .btn-primary {
-    background-color: var(--color-sage);
+    background-color: var(--color-sage-dark);   /* darker sage keeps white text readable (about 5:1 contrast) */
     color: var(--color-white);
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-    background-color: var(--color-sage-dark);
+    background-color: var(--color-juniper);
 }
 
 .btn-primary:active {
@@ -323,45 +327,12 @@ main > section + section {
 }
 
 /* --------------------------------------------------------------------
-   8. PRODUCTS PAGE — grid of product cards + reviews
+   8. PRODUCTS PAGE — reviews (product cards are in section 14)
    -------------------------------------------------------------------- */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: var(--space-4);
-}
-
-.product-card {
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    transition: box-shadow 0.2s ease;
-}
-
-.product-card:hover {
-    box-shadow: 0 4px 16px rgba(10, 10, 10, 0.12);
-}
-
-.product-card img {
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-}
-
-.product-card h2 {
-    font-size: var(--text-md);
-    padding: var(--space-2) var(--space-2) 0;
-}
-
-.product-card .price {
-    font-weight: 600;
-    color: var(--color-sage);
-    padding: 0 var(--space-2);
-}
-
-.product-card .stock {
-    font-size: var(--text-sm);
-    color: var(--color-text-soft);
-    padding: 0 var(--space-2) var(--space-2);
 }
 
 .reviews {
@@ -397,43 +368,7 @@ main > section + section {
 }
 
 /* --------------------------------------------------------------------
-   9. ENQUIRY PAGE — form styling
-   -------------------------------------------------------------------- */
-.enquiry-form {
-    display: grid;
-    gap: var(--space-1);
-    max-width: 32rem;
-    margin-top: var(--space-4);
-}
-
-.enquiry-form label {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    margin-top: var(--space-2);
-}
-
-.enquiry-form input,
-.enquiry-form select,
-.enquiry-form textarea {
-    padding: var(--space-2);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background-color: var(--color-white);
-}
-
-.enquiry-form input:focus-visible,
-.enquiry-form select:focus-visible,
-.enquiry-form textarea:focus-visible {
-    border-color: var(--color-sage);
-}
-
-.enquiry-form button {
-    margin-top: var(--space-3);
-    justify-self: start;
-}
-
-/* --------------------------------------------------------------------
-   10. CONTACT PAGE — details + map embeds
+   10. CONTACT PAGE — details (map is in section 16)
    -------------------------------------------------------------------- */
 .contact-details p {
     font-size: var(--text-md);
@@ -441,34 +376,13 @@ main > section + section {
 }
 
 .contact-details a {
-    color: var(--color-sage);
-    border-bottom: 1px solid var(--color-sage);
+    color: var(--color-sage-dark);
+    border-bottom: 1px solid var(--color-sage-dark);
 }
 
 .contact-details a:hover,
 .contact-details a:focus-visible {
-    color: var(--color-sage-dark);
-}
-
-.locations {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-}
-
-.locations h2 {
-    grid-column: 1 / -1;
-}
-
-.map-embed {
-    aspect-ratio: 4 / 3;
-}
-
-.map-embed iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    border-radius: var(--radius);
+    color: var(--color-juniper);
 }
 
 /* --------------------------------------------------------------------
@@ -478,7 +392,7 @@ main > section + section {
     position: fixed;
     bottom: var(--space-3);
     right: var(--space-3);
-    background-color: var(--color-sage);
+    background-color: var(--color-sage-dark);
     color: var(--color-white);
     font-size: var(--text-sm);
     font-weight: 600;
@@ -491,7 +405,7 @@ main > section + section {
 
 .whatsapp-float:hover,
 .whatsapp-float:focus-visible {
-    background-color: var(--color-sage-dark);
+    background-color: var(--color-juniper);
     transform: translateY(-2px);
 }
 
@@ -568,13 +482,855 @@ main > section + section {
         width: 10rem;
     }
 
-    .locations {
-        grid-template-columns: 1fr;   /* two maps stack instead of sitting side by side */
-    }
-
     .whatsapp-float {
         bottom: var(--space-2);
         right: var(--space-2);
         padding: var(--space-1) var(--space-2);
     }
+}
+
+/* ==========================================================================
+   PART 3 ADDITIONS
+   Sections 13-18 style the new interactive features. They only use the
+   colour/spacing tokens from section 2, so the juniper + sage look stays
+   consistent everywhere.
+   ========================================================================== */
+
+/* The HTML "hidden" attribute must always win, even over display: grid/flex below */
+[hidden] { display: none !important; }
+
+/* --------------------------------------------------------------------
+   13. ACCESSIBILITY HELPERS + SHARED PIECES
+   -------------------------------------------------------------------- */
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    z-index: 100;
+    padding: var(--space-1) var(--space-2);
+    background-color: var(--color-juniper);
+    color: var(--color-white);
+    font-weight: 600;
+}
+
+.skip-link:focus {
+    left: var(--space-2);
+    top: var(--space-2);
+}
+
+.logo-img { flex-shrink: 0; }
+
+.text-link {
+    color: var(--color-sage-dark);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.text-link:hover,
+.text-link:focus-visible { color: var(--color-juniper); }
+
+.section-heading { text-align: center; }
+
+.section-intro {
+    text-align: center;
+    margin-inline: auto;
+    margin-bottom: var(--space-4);
+    color: var(--color-text-soft);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-sage-dark);
+    border-color: var(--color-sage-dark);
+}
+
+.btn-outline:hover,
+.btn-outline:focus-visible {
+    background-color: var(--color-sage-light);
+    color: var(--color-juniper);
+}
+
+.btn-outline:active { transform: scale(0.98); }
+.btn-small { padding: var(--space-1) var(--space-2); }
+
+.btn-light {
+    background-color: var(--color-white);
+    color: var(--color-juniper);
+}
+
+.btn-light:hover,
+.btn-light:focus-visible { background-color: var(--color-sage-light); }
+.btn-light:active { transform: scale(0.98); }
+
+.btn[disabled] { opacity: 0.6; cursor: not-allowed; }
+
+/* Footer: now holds a small nav so every page links to every other page */
+.site-footer {
+    display: grid;
+    gap: var(--space-2);
+    justify-items: center;
+}
+
+.footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-1) var(--space-3);
+}
+
+.footer-nav a,
+.site-footer .footer-link {
+    color: var(--color-sage-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus-visible { color: var(--color-white); }
+
+/* Calls to action */
+.cta-band {
+    background-color: var(--color-juniper);
+    color: var(--color-white);
+    text-align: center;
+    padding: var(--space-5) var(--space-3);
+    border-radius: var(--radius);
+}
+
+.cta-band h2 { color: var(--color-white); }
+
+.cta-band p {
+    margin-inline: auto;
+    margin-bottom: var(--space-3);
+    color: var(--color-sage-light);
+}
+
+.cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+}
+
+/* --------------------------------------------------------------------
+   14. ANIMATIONS + PRODUCT CARDS
+   -------------------------------------------------------------------- */
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.hero { isolation: isolate; background-color: var(--color-juniper); }
+.hero img { object-position: center 25%; }
+.hero-text { animation: fade-up 0.8s ease both; }
+
+/* Scroll reveal: main.js adds .is-visible as a section enters the screen */
+.reveal-ready .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-ready .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background-color: var(--color-white);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 6px 20px rgba(29, 47, 39, 0.16);
+    transform: translateY(-3px);
+}
+
+.product-image-link {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: contain;          /* show the whole photo (some contain text/diagrams that cropping would cut off) */
+    transition: transform 0.4s ease;
+}
+
+.product-image-link:hover img,
+.product-image-link:focus-visible img { transform: scale(1.05); }
+
+.zoom-hint {
+    position: absolute;
+    right: var(--space-1);
+    bottom: var(--space-1);
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    background-color: rgba(29, 47, 39, 0.88);
+    color: var(--color-white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.product-image-link:hover .zoom-hint,
+.product-image-link:focus-visible .zoom-hint { opacity: 1; }
+
+.product-body {
+    display: grid;
+    gap: 0.25rem;
+    align-content: start;
+    flex: 1;
+    padding: var(--space-2);
+}
+
+.product-name { font-size: var(--text-md); }
+
+.product-meta {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+}
+
+.product-card .stock {
+    justify-self: start;
+    padding: 0.1rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.stock-in  { background-color: var(--color-sage-light); color: var(--color-juniper); }
+.stock-low { background-color: #F7E9D0; color: #6B4200; }
+
+.product-body .btn { margin-top: var(--space-1); justify-self: start; }
+
+/* Search / filter / sort bar */
+.filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto auto;
+    gap: var(--space-2);
+    align-items: end;
+    margin-bottom: var(--space-2);
+    padding: var(--space-3);
+    background-color: var(--color-sage-light);
+    border-radius: var(--radius);
+}
+
+.filters label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+.filters input[type="search"],
+.filters select {
+    width: 100%;
+    padding: 0.7rem var(--space-2);
+    border: 1px solid #8A9A82;
+    border-radius: var(--radius);
+    background-color: var(--color-white);
+}
+
+.checkbox-inline {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding-bottom: 0.7rem;
+    white-space: nowrap;
+}
+
+.checkbox-inline label { margin: 0; }
+.checkbox-inline input { accent-color: var(--color-juniper); width: 1.1rem; height: 1.1rem; }
+
+.result-count {
+    margin-bottom: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+}
+
+.no-results {
+    padding: var(--space-5) var(--space-3);
+    text-align: center;
+    border: 1px dashed #8A9A82;
+    border-radius: var(--radius);
+}
+
+.no-results p { margin: 0 auto var(--space-2); }
+
+/* --------------------------------------------------------------------
+   15. TABS, ACCORDION, GALLERY, LIGHTBOX
+   -------------------------------------------------------------------- */
+
+/* Tabs — the tab buttons only show when JavaScript is running */
+.tabs [role="tablist"] { display: none; }
+
+.js .tabs [role="tablist"] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-1);
+    margin-bottom: var(--space-3);
+}
+
+.tabs [role="tab"] {
+    padding: 0.6rem 1.3rem;
+    border: 1px solid var(--color-sage-dark);
+    border-radius: 999px;
+    background-color: var(--color-white);
+    color: var(--color-juniper);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tabs [role="tab"]:hover { background-color: var(--color-sage-light); }
+
+.tabs [role="tab"][aria-selected="true"] {
+    background-color: var(--color-juniper);
+    border-color: var(--color-juniper);
+    color: var(--color-white);
+}
+
+.tab-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 16rem) 1fr;
+    gap: var(--space-4);
+    align-items: center;
+    padding: var(--space-4);
+    background-color: var(--color-sage-light);
+    border-radius: var(--radius);
+}
+
+.tab-panel + .tab-panel { margin-top: var(--space-3); }
+.js .tab-panel.is-active { animation: fade-up 0.4s ease both; }
+
+.tab-panel img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+.tab-panel p { margin-bottom: var(--space-2); }
+
+/* Accordion — all answers are visible if JavaScript is off */
+.accordion {
+    display: grid;
+    gap: var(--space-1);
+}
+
+.accordion-item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background-color: var(--color-white);
+}
+
+.accordion-item h3 { font-size: var(--text-base); }
+
+.accordion-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    border: 0;
+    background: none;
+    color: var(--color-juniper);
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+
+.accordion-trigger:hover { background-color: var(--color-sage-light); }
+
+.js .accordion-trigger::after {
+    content: "+";
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.js .accordion-trigger[aria-expanded="true"]::after { content: "\2212"; }
+
+.accordion-inner > p { padding: 0 var(--space-3) var(--space-3); }
+
+.js .accordion-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.js .accordion-panel.is-open {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition: grid-template-rows 0.3s ease, visibility 0s;
+}
+
+.js .accordion-inner { overflow: hidden; }
+
+/* Gallery grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: var(--space-2);
+}
+
+.gallery-item {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius);
+    background-color: var(--color-sage-light);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img,
+.gallery-item:focus-visible img { transform: scale(1.07); }
+
+.gallery-caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: var(--space-3) var(--space-1) var(--space-1);
+    background: linear-gradient(0deg, rgba(29, 47, 39, 0.9), transparent);
+    color: var(--color-white);
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.gallery-item:hover .gallery-caption,
+.gallery-item:focus-visible .gallery-caption { opacity: 1; }
+
+/* Lightbox (built by js/lightbox.js on a native <dialog>) */
+body.lightbox-open { overflow: hidden; }
+
+.lightbox {
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: hidden;
+}
+
+.lightbox::backdrop { background-color: rgba(18, 30, 24, 0.92); }
+
+.lightbox-figure {
+    position: absolute;
+    inset: 4rem 5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    margin: 0;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: calc(100vh - 10rem);
+    object-fit: contain;
+    background-color: var(--color-white);
+    border-radius: var(--radius);
+}
+
+.lightbox-figure figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-1) var(--space-3);
+    color: var(--color-white);
+    font-size: var(--text-sm);
+    text-align: center;
+}
+
+.lightbox-counter { color: var(--color-sage-light); }
+
+.lightbox-btn {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.12);
+    color: var(--color-white);
+    font-size: 1.9rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.lightbox-btn:hover,
+.lightbox-btn:focus-visible { background-color: rgba(255, 255, 255, 0.3); }
+
+.lightbox-close { top: var(--space-2); right: var(--space-2); }
+.lightbox-prev  { top: 50%; left: var(--space-2); transform: translateY(-50%); }
+.lightbox-next  { top: 50%; right: var(--space-2); transform: translateY(-50%); }
+
+/* --------------------------------------------------------------------
+   16. FORMS (enquiry + contact share these styles)
+   -------------------------------------------------------------------- */
+.site-form {
+    display: grid;
+    gap: var(--space-1);
+    max-width: 36rem;
+    margin-top: var(--space-3);
+}
+
+.form-field {
+    display: grid;
+    gap: 0.35rem;
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.form-field label,
+.form-field legend {
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+.required { color: #8C1D18; }
+
+.field-hint {
+    min-height: 1.4em;
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+}
+
+.site-form input[type="text"],
+.site-form input[type="email"],
+.site-form input[type="tel"],
+.site-form input[type="date"],
+.site-form input[type="number"],
+.site-form select,
+.site-form textarea {
+    width: 100%;
+    padding: var(--space-2);
+    border: 1px solid #8A9A82;
+    border-radius: var(--radius);
+    background-color: var(--color-white);
+}
+
+.site-form textarea { resize: vertical; min-height: 7rem; }
+
+.site-form input:focus-visible,
+.site-form select:focus-visible,
+.site-form textarea:focus-visible { border-color: var(--color-juniper); }
+
+.choice-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+}
+
+.choice {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-weight: 500;
+}
+
+.choice input {
+    width: 1.15rem;
+    height: 1.15rem;
+    accent-color: var(--color-juniper);
+}
+
+.char-count {
+    font-size: 0.8rem;
+    color: var(--color-text-soft);
+    text-align: right;
+}
+
+.char-count.is-near-limit { color: #8C1D18; font-weight: 600; }
+
+/* Error messages: colour + a "!" icon + text, so the message never relies on colour alone */
+.field-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    min-height: 1.5em;          /* reserved even when empty so the layout never jumps */
+    color: #B3261E;
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+.field-error:empty::before { display: none; }
+
+.field-error::before {
+    content: "!";
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background-color: #B3261E;
+    color: var(--color-white);
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
+.has-error input,
+.has-error select,
+.has-error textarea {
+    border-color: #B3261E;
+    background-color: #FFF7F6;
+}
+
+.form-summary {
+    margin-top: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: 2px solid #B3261E;
+    border-radius: var(--radius);
+    background-color: #FFF7F6;
+}
+
+.form-summary-title { font-weight: 700; color: #8C1D18; }
+
+.form-summary ul {
+    margin-top: var(--space-1);
+    padding-left: 1.25rem;
+    list-style: disc;
+}
+
+.form-summary a { color: #8C1D18; text-decoration: underline; }
+
+.site-form button[type="submit"] {
+    margin-top: var(--space-3);
+    justify-self: start;
+}
+
+/* Spam-trap field: off-screen so people never see it, but form-filling bots do */
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* The answer shown after a valid submit */
+.response-panel {
+    max-width: 40rem;
+    margin-top: var(--space-3);
+    padding: var(--space-4);
+    background-color: var(--color-sage-light);
+    border-left: 4px solid var(--color-sage-dark);
+    border-radius: var(--radius);
+}
+
+.response-panel:focus { outline: none; }
+.response-title { margin-bottom: var(--space-1); }
+.response-intro { margin-bottom: var(--space-2); }
+
+.response-list { display: grid; gap: 0; margin-bottom: var(--space-2); }
+
+.response-row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: var(--space-2);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.response-row dt { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-soft); }
+.response-row dd { margin: 0; }
+
+.response-row.is-highlight dd {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-juniper);
+}
+
+.availability-in  { color: var(--color-juniper); font-weight: 600; }
+.availability-low { color: #6B4200; font-weight: 600; }
+
+.response-note {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+}
+
+.response-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin-top: var(--space-2);
+}
+
+.send-status {
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+.send-sending { color: var(--color-text-soft); }
+.send-sent    { color: var(--color-juniper); }
+.send-failed  { color: #8C1D18; }
+
+.email-body {
+    margin-bottom: var(--space-2);
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background-color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------------------------
+   17. CONTACT PAGE — map + location cards
+   -------------------------------------------------------------------- */
+.map-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin-bottom: var(--space-2);
+}
+
+#map {
+    height: 26rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    z-index: 0;
+}
+
+#map.map-fallback {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+    height: auto;
+    border: 0;
+}
+
+#map.map-fallback iframe {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border: 0;
+    border-radius: var(--radius);
+}
+
+.map-status {
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+}
+
+.location-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+}
+
+.location-card {
+    padding: var(--space-3);
+    border-left: 4px solid var(--color-sage-dark);
+    background-color: var(--color-sage-light);
+    border-radius: var(--radius);
+}
+
+.location-card h3 { margin-bottom: 0.25rem; }
+.location-card p { margin-bottom: var(--space-1); }
+
+.noscript-maps { display: grid; gap: var(--space-2); }
+
+.noscript-maps iframe {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border: 0;
+}
+
+/* --------------------------------------------------------------------
+   18. PART 3 RESPONSIVE RULES
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .filters { grid-template-columns: 1fr 1fr; }
+    .filters .search-field { grid-column: 1 / -1; }
+    .lightbox-figure { inset: 4rem 4rem 1.5rem; }
+}
+
+@media (max-width: 640px) {
+    .filters { grid-template-columns: 1fr; }
+
+    .tab-panel {
+        grid-template-columns: 1fr;
+        padding: var(--space-3);
+    }
+
+    .tab-panel img { max-width: 14rem; margin-inline: auto; }
+
+    .response-row { grid-template-columns: 1fr; gap: 0; }
+
+    #map { height: 20rem; }
+    #map.map-fallback { grid-template-columns: 1fr; }
+
+    .lightbox-figure { inset: 4rem 0.5rem 5rem; }
+    .lightbox-prev,
+    .lightbox-next { top: auto; bottom: var(--space-2); transform: none; }
+    .lightbox-prev { left: calc(50% - 3.5rem); }
+    .lightbox-next { right: calc(50% - 3.5rem); }
+}
+
+/* Buttons and links that sit on the dark juniper call-to-action band */
+.btn-on-dark {
+    border-color: var(--color-white);
+    color: var(--color-white);
+}
+
+.btn-on-dark:hover,
+.btn-on-dark:focus-visible {
+    background-color: var(--color-white);
+    color: var(--color-juniper);
+}
+
+.cta-band a.text-link,
+.cta-band a.footer-link { color: var(--color-white); }
+
+/* Sections that follow the product grid are not direct siblings of a <section>, so space them explicitly */
+main > .reviews,
+main > .cta-band,
+main > .locations { margin-top: var(--space-6); }
+
+@media (max-width: 640px) {
+    main > .reviews,
+    main > .cta-band,
+    main > .locations { margin-top: var(--space-5); }
 }

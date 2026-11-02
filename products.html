@@ -1,106 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products | Glamour Girl Hair</title>
-    <meta name="description" content="Shop Vietnamese straight, super double-drawn hair bundles by length and colour.">
-    <link rel="icon" href="images/glamour-logo.jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hair Bundles for Sale | Straight, Wave, Curly SA</title>
+    <meta name="description" content="Shop human hair bundles in South Africa: Vietnamese straight, body wave, curly and deep wave. Search by texture and length, then enquire for stock and pricing.">
+    <meta name="keywords" content="hair bundles for sale South Africa, straight hair bundles, body wave bundles, curly hair bundles, deep wave bulk hair, buy human hair bundles">
+    <meta name="author" content="Glamour Girl Hair">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2F4A3D">
+    <link rel="canonical" href="https://glamour-girl-hair.netlify.app/products.html">
+
+    <!-- Open Graph + Twitter: control how the page looks when shared on social media -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Glamour Girl Hair">
+    <meta property="og:title" content="Hair Bundles for Sale | Straight, Wave, Curly SA">
+    <meta property="og:description" content="Shop human hair bundles in South Africa: Vietnamese straight, body wave, curly and deep wave. Search by texture and length, then enquire for stock and pricing.">
+    <meta property="og:url" content="https://glamour-girl-hair.netlify.app/products.html">
+    <meta property="og:image" content="https://glamour-girl-hair.netlify.app/images/glamour-girl-hair-logo.jpeg">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="icon" href="images/glamour-girl-hair-logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Marks the page as JavaScript-capable so CSS can enable tabs/accordion; without JS everything stays visible -->
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
+    <!-- Site header: logo + main navigation -->
     <header class="site-header">
-        <div class="logo">
-            <img src="images/glamour-logo.jpeg" alt="Glamour Girl Hair logo" class="logo-img">
+        <a class="logo" href="index.html">
+            <img src="images/glamour-girl-hair-logo.jpeg" alt="Glamour Girl Hair logo" class="logo-img" width="32" height="29">
             Glamour Girl Hair
-        </div>
-        <nav>
+        </a>
+        <nav aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html" class="active" aria-current="page">Products</a></li>
                 <li><a href="enquiry.html">Enquiry</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <h1>Shop Our Bundles</h1>
-        <section class="products-grid">
-            <article class="product-card">
-                <img src="images/catalog-bundle-1.webp" alt="14 inch Vietnamese straight bundle" loading="lazy">
-                <h2>14&Prime; Straight Bundle</h2>
-                <p class="price">R1,200</p>
-                <p class="stock">In Stock</p>
+    <main id="main">
+        <h1>Shop Our Human Hair Bundles</h1>
+        <p class="section-intro">Search, filter and sort our bundles. Click a picture to see it larger, or
+           <a class="text-link" href="enquiry.html">make an enquiry</a> about anything you like.</p>
+
+        <!-- Search / filter / sort: products.js updates the cards as you type -->
+        <form id="product-filters" class="filters" role="search" aria-label="Search and filter bundles">
+            <div class="search-field">
+                <label for="product-search">Search bundles</label>
+                <input type="search" id="product-search" name="q" placeholder="e.g. curly, 24, body wave" autocomplete="off" maxlength="40">
+            </div>
+            <div>
+                <label for="texture-filter">Texture</label>
+                <select id="texture-filter" name="texture">
+                    <option value="all">All textures</option>
+                    <option value="straight">Straight</option>
+                    <option value="body wave">Body wave</option>
+                    <option value="curly">Curly</option>
+                    <option value="deep wave">Deep wave</option>
+                </select>
+            </div>
+            <div>
+                <label for="product-sort">Sort by</label>
+                <select id="product-sort" name="sort">
+                    <option value="featured">Featured</option>
+                    <option value="price-asc">Price: low to high</option>
+                    <option value="price-desc">Price: high to low</option>
+                    <option value="length-asc">Length: short to long</option>
+                    <option value="length-desc">Length: long to short</option>
+                    <option value="name">Name: A to Z</option>
+                </select>
+            </div>
+            <div class="checkbox-inline">
+                <input type="checkbox" id="in-stock-only" name="instock">
+                <label for="in-stock-only">In stock only</label>
+            </div>
+            <button type="button" id="reset-filters" class="btn btn-outline btn-small">Reset</button>
+        </form>
+
+        <p id="result-count" class="result-count" role="status" aria-live="polite"></p>
+
+        <!-- Cards are built here by products.js from js/products-data.js -->
+        <section id="product-grid" class="products-grid" aria-label="Hair bundles">
+            <noscript><p>Please turn on JavaScript to browse our bundles, or <a class="text-link" href="enquiry.html">make an enquiry</a> and we will send you our full list.</p></noscript>
+        </section>
+
+        <div id="no-results" class="no-results" hidden>
+            <p>No bundles match your search. Try a different word or clear the filters.</p>
+            <button type="button" id="empty-reset" class="btn btn-primary">Clear filters</button>
+        </div>
+
+        <section class="reviews reveal">
+            <h2>What Our Customers Say</h2>
+            <article class="review">
+                <blockquote>
+                    <p>Placeholder review text goes here.</p>
+                    <footer> Customer name</footer>
+                </blockquote>
             </article>
 
-            <article class="product-card">
-                <img src="images/catalog-bundle-7.webp" alt="18 inch Vietnamese straight bundle with closure" loading="lazy">
-                <h2>18&Prime; Straight Bundle</h2>
-                <p class="price">R1,650</p>
-                <p class="stock">In Stock</p>
-            </article>
-
-            <article class="product-card">
-                <img src="images/catalog-bundle-3.jpg" alt="24 inch Vietnamese straight bundle, virgin hair" loading="lazy">
-                <h2>24&Prime; Straight Bundle</h2>
-                <p class="price">R2,400</p>
-                <p class="stock">Low Stock</p>
-            </article>
-
-            <article class="product-card">
-                <img src="images/catalog-bundle-6.jpg" alt="Body wave bundle" loading="lazy">
-                <h2>Body Wave Bundle</h2>
-                <p class="price">R1,450</p>
-                <p class="stock">In Stock</p>
-            </article>
-
-            <article class="product-card">
-                <img src="images/catalog-bundle-5.jpg" alt="Curly bundle, exquisite top weft" loading="lazy">
-                <h2>Curly Bundle</h2>
-                <p class="price">R1,550</p>
-                <p class="stock">In Stock</p>
-            </article>
-
-            <article class="product-card">
-                <img src="images/catalog-bundle-4.webp" alt="Deep wave bulk hair" loading="lazy">
-                <h2>Deep Wave Bulk Hair</h2>
-                <p class="price">R1,700</p>
-                <p class="stock">Low Stock</p>
+            <article class="review">
+                <blockquote>
+                    <p>Placeholder review text goes here.</p>
+                    <footer> Customer name</footer>
+                </blockquote>
             </article>
         </section>
 
-        <section class="reviews">
-            <h2>What Our Customers Say</h2>
-
-            <article class="review">
-                <blockquote>
-                    <p>Placeholder review text goes here.</p>
-                    <footer> Customer name</footer>
-                </blockquote>
-            </article>
-
-            <article class="review">
-                <blockquote>
-                    <p>Placeholder review text goes here.</p>
-                    <footer> Customer name</footer>
-                </blockquote>
-            </article>
+        <section class="cta-band reveal">
+            <h2>Not sure which bundle is right for you?</h2>
+            <p>Read <a class="text-link footer-link" href="about.html">our story</a> or ask us directly. We will help you choose.</p>
+            <div class="cta-actions">
+                <a class="btn btn-light" href="enquiry.html">Make an Enquiry</a>
+            </div>
         </section>
     </main>
 
-    <a href="https://wa.me/27000000000" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
+    <a href="https://wa.me/27000000000" class="whatsapp-float" aria-label="Chat with us on WhatsApp" target="_blank" rel="noopener noreferrer">
         WhatsApp Us
     </a>
 
     <footer class="site-footer">
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <p>Human hair bundles, wigs and installs in Durban and Johannesburg, South Africa.</p>
         <p>&copy; 2026 Glamour Girl Hair. All rights reserved.</p>
     </footer>
 
+    <script src="js/products-data.js" defer></script>
+    <script src="js/products.js" defer></script>
+    <script src="js/lightbox.js" defer></script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>

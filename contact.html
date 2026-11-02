@@ -1,64 +1,223 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Glamour Girl Hair</title>
-    <meta name="description" content="Get in touch with Glamour Girl Hair via WhatsApp, email, or find us.">
-    <link rel="icon" href="images/glamour-logo.jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Glamour Girl Hair | Durban &amp; Johannesburg</title>
+    <meta name="description" content="Contact Glamour Girl Hair in Durban or Johannesburg. Send a message, find us on the interactive map, or chat on WhatsApp for hair bundles, wigs and installs.">
+    <meta name="keywords" content="contact Glamour Girl Hair, hair bundles Durban, hair bundles Johannesburg, hair store KwaZulu-Natal, hair store Gauteng, WhatsApp hair orders">
+    <meta name="author" content="Glamour Girl Hair">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2F4A3D">
+    <link rel="canonical" href="https://glamour-girl-hair.netlify.app/contact.html">
+
+    <!-- Open Graph + Twitter: control how the page looks when shared on social media -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Glamour Girl Hair">
+    <meta property="og:title" content="Contact Glamour Girl Hair | Durban &amp; Johannesburg">
+    <meta property="og:description" content="Contact Glamour Girl Hair in Durban or Johannesburg. Send a message, find us on the interactive map, or chat on WhatsApp for hair bundles, wigs and installs.">
+    <meta property="og:url" content="https://glamour-girl-hair.netlify.app/contact.html">
+    <meta property="og:image" content="https://glamour-girl-hair.netlify.app/images/glamour-girl-hair-logo.jpeg">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="icon" href="images/glamour-girl-hair-logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Leaflet: free, open-source map library (maps by OpenStreetMap contributors) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Glamour Girl Hair",
+      "url": "https://glamour-girl-hair.netlify.app/",
+      "logo": "https://glamour-girl-hair.netlify.app/images/glamour-girl-hair-logo.jpeg",
+      "image": "https://glamour-girl-hair.netlify.app/images/glamour-girl-hair-logo.jpeg",
+      "description": "Premium Vietnamese straight, body wave, curly and deep wave human hair bundles, wigs and professional installs in South Africa.",
+      "email": "hello@glamourgirlhair.co.za",
+      "areaServed": [
+        {"@type": "City", "name": "Durban"},
+        {"@type": "City", "name": "Johannesburg"}
+      ],
+      "location": [
+        {"@type": "Place", "name": "Glamour Girl Hair Durban",
+          "address": {"@type": "PostalAddress", "addressLocality": "Durban", "addressRegion": "KwaZulu-Natal", "addressCountry": "ZA"},
+          "geo": {"@type": "GeoCoordinates", "latitude": -29.8587, "longitude": 31.0218}},
+        {"@type": "Place", "name": "Glamour Girl Hair Johannesburg",
+          "address": {"@type": "PostalAddress", "addressLocality": "Johannesburg", "addressRegion": "Gauteng", "addressCountry": "ZA"},
+          "geo": {"@type": "GeoCoordinates", "latitude": -26.2041, "longitude": 28.0473}}
+      ]
+    }
+    </script>
+    <!-- Marks the page as JavaScript-capable so CSS can enable tabs/accordion; without JS everything stays visible -->
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
+    <!-- Site header: logo + main navigation -->
     <header class="site-header">
-        <div class="logo">
-            <img src="images/glamour-logo.jpeg" alt="Glamour Girl Hair logo" class="logo-img">
+        <a class="logo" href="index.html">
+            <img src="images/glamour-girl-hair-logo.jpeg" alt="Glamour Girl Hair logo" class="logo-img" width="32" height="29">
             Glamour Girl Hair
-        </div>
-        <nav>
+        </a>
+        <nav aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="enquiry.html">Enquiry</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <h1>Contact Us</h1>
+    <main id="main">
+        <h1>Contact Glamour Girl Hair</h1>
 
         <section class="contact-details">
-            <p><strong>WhatsApp:</strong> <a href="https://wa.me/27000000000">+27 00 000 0000</a></p>
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/27000000000" target="_blank" rel="noopener noreferrer">+27 00 000 0000</a></p>
             <p><strong>Email:</strong> <a href="mailto:hello@glamourgirlhair.co.za">hello@glamourgirlhair.co.za</a></p>
+            <p>Looking for prices or stock? Use the <a class="text-link" href="enquiry.html">enquiry form</a> or see our
+               <a class="text-link" href="products.html">hair bundles</a>.</p>
         </section>
 
-        <section class="locations">
-            <h2>Find Us</h2>
-            <div class="map-embed">
-                <iframe
-                    src="https://maps.google.com/maps?q=Durban,South+Africa&output=embed"
-                    title="Glamour Girl Hair location 1" loading="lazy"></iframe>
+        <section aria-labelledby="message-heading">
+            <h2 id="message-heading">Send Us a Message</h2>
+            <p>Fill in the form and we will put your message into an email that you can send to us in one click.</p>
+
+            <form id="contact-form" class="site-form contact-form" method="post" action="mailto:hello@glamourgirlhair.co.za" data-recipient="hello@glamourgirlhair.co.za">
+                <p class="field-hint">Fields marked <span class="required" aria-hidden="true">*</span> are required.</p>
+                <div class="form-summary" role="alert" tabindex="-1" hidden></div>
+            <div class="hp-field" aria-hidden="true">
+                <label for="_honey">Leave this field empty</label>
+                <input type="text" id="_honey" name="_honey" tabindex="-1" autocomplete="off">
             </div>
-            <div class="map-embed">
-                <iframe
-                    src="https://maps.google.com/maps?q=Johannesburg,South+Africa&output=embed"
-                    title="Glamour Girl Hair location 2" loading="lazy"></iframe>
+
+            <div class="form-field" data-field="name">
+                <label for="name">Full name <span class="required" aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" required autocomplete="name" maxlength="60" aria-describedby="name-error">
+                <p class="field-error" id="name-error" data-error-for="name"></p>
+            </div>
+
+            <div class="form-field" data-field="email">
+                <label for="email">Email address <span class="required" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email" maxlength="100" aria-describedby="email-error">
+                <p class="field-error" id="email-error" data-error-for="email"></p>
+            </div>
+
+            <div class="form-field" data-field="phone">
+                <label for="phone">Phone number <span class="field-hint">(optional)</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="20" inputmode="tel" aria-describedby="phone-error phone-hint">
+                <p class="field-hint" id="phone-hint">South African number, for example 082 123 4567. Required if you want a WhatsApp or phone reply.</p>
+                <p class="field-error" id="phone-error" data-error-for="phone"></p>
+            </div>
+
+            <fieldset class="form-field" data-field="contactMethod" aria-describedby="contactMethod-error">
+                <legend>How should we reply? <span class="required" aria-hidden="true">*</span></legend>
+                <div class="choice-row">
+                    <label class="choice"><input type="radio" name="contactMethod" value="email" id="contactMethod-email" required> Email</label>
+                    <label class="choice"><input type="radio" name="contactMethod" value="whatsapp" id="contactMethod-whatsapp"> WhatsApp</label>
+                    <label class="choice"><input type="radio" name="contactMethod" value="phone" id="contactMethod-phone"> Phone call</label>
+                </div>
+                <p class="field-error" id="contactMethod-error" data-error-for="contactMethod"></p>
+            </fieldset>
+
+            <div class="form-field" data-field="messageType">
+                <label for="messageType">Type of message <span class="required" aria-hidden="true">*</span></label>
+                <select id="messageType" name="messageType" required aria-describedby="messageType-error">
+                    <option value="">Choose one&hellip;</option>
+                    <option value="general">General question</option>
+                    <option value="feedback">Feedback or compliment</option>
+                    <option value="complaint">Complaint</option>
+                    <option value="partnership">Collaboration or partnership</option>
+                    <option value="other">Other</option>
+                </select>
+                <p class="field-error" id="messageType-error" data-error-for="messageType"></p>
+            </div>
+            <div class="form-field" data-field="subject">
+                <label for="subject">Subject <span class="required" aria-hidden="true">*</span></label>
+                <input type="text" id="subject" name="subject" required maxlength="80" aria-describedby="subject-error">
+                <p class="field-error" id="subject-error" data-error-for="subject"></p>
+            </div>
+
+            <div class="form-field" data-field="message">
+                <label for="message">Your message <span class="required" aria-hidden="true">*</span></label>
+                <textarea id="message" name="message" rows="5" required minlength="20" maxlength="1000" aria-describedby="message-error message-count"></textarea>
+                <p class="char-count" id="message-count" data-count-for="message" aria-live="polite"></p>
+                <p class="field-error" id="message-error" data-error-for="message"></p>
+            </div>
+
+            <div class="form-field" data-field="consent">
+                <label class="choice" for="consent"><input type="checkbox" id="consent" name="consent" value="yes" required aria-describedby="consent-error"> <span>I agree that Glamour Girl Hair may reply to me about this message. <span class="required" aria-hidden="true">*</span></span></label>
+                <p class="field-error" id="consent-error" data-error-for="consent"></p>
+            </div>
+
+                <button type="submit" class="btn btn-primary">Prepare My Email</button>
+            </form>
+
+            <!-- Filled in by forms.js: shows the compiled email with a Send button -->
+            <section id="email-preview" class="response-panel" aria-live="polite" hidden></section>
+        </section>
+
+        <section class="locations" aria-labelledby="find-heading">
+            <h2 id="find-heading">Find Us in Durban and Johannesburg</h2>
+            <p>Use the buttons to move around the map, or let us find the location nearest to you.</p>
+            <div class="map-controls">
+                <button type="button" class="btn btn-outline btn-small" data-map-focus="durban">Durban</button>
+                <button type="button" class="btn btn-outline btn-small" data-map-focus="johannesburg">Johannesburg</button>
+                <button type="button" class="btn btn-outline btn-small" id="map-show-all">Show both</button>
+                <button type="button" class="btn btn-primary btn-small" id="map-locate">Find my nearest location</button>
+            </div>
+            <div id="map" role="region" aria-label="Interactive map of our Durban and Johannesburg locations"></div>
+            <p id="map-status" class="map-status" role="status" aria-live="polite"></p>
+            <noscript>
+                <div class="noscript-maps">
+                    <iframe src="https://maps.google.com/maps?q=Durban,South+Africa&amp;output=embed" title="Map of Glamour Girl Hair in Durban" loading="lazy"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=Johannesburg,South+Africa&amp;output=embed" title="Map of Glamour Girl Hair in Johannesburg" loading="lazy"></iframe>
+                </div>
+            </noscript>
+
+            <div class="location-cards">
+                <article class="location-card">
+                    <h3>Durban, KwaZulu-Natal</h3>
+                    <p>Serving customers across Durban and KwaZulu-Natal.</p>
+                    <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Durban%2C%20South%20Africa" target="_blank" rel="noopener noreferrer">Get directions</a>
+                </article>
+                <article class="location-card">
+                    <h3>Johannesburg, Gauteng</h3>
+                    <p>Serving customers across Johannesburg and Gauteng.</p>
+                    <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Johannesburg%2C%20South%20Africa" target="_blank" rel="noopener noreferrer">Get directions</a>
+                </article>
             </div>
         </section>
     </main>
 
-    <a href="https://wa.me/27000000000" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
+    <a href="https://wa.me/27000000000" class="whatsapp-float" aria-label="Chat with us on WhatsApp" target="_blank" rel="noopener noreferrer">
         WhatsApp Us
     </a>
 
     <footer class="site-footer">
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <p>Human hair bundles, wigs and installs in Durban and Johannesburg, South Africa.</p>
         <p>&copy; 2026 Glamour Girl Hair. All rights reserved.</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" defer></script>
+    <script src="js/validation.js" defer></script>
+    <script src="js/forms.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/map.js" defer></script>
 </body>
 </html>

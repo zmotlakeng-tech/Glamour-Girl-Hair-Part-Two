@@ -1,27 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Glamour Girl Hair</title>
-    <meta name="description" content="The story behind Glamour Girl Hair, our mission, and what makes us different.">
-    <link rel="icon" href="images/glamour-logo.jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Us | Glamour Girl Hair, Premium Hair in SA</title>
+    <meta name="description" content="Learn how Glamour Girl Hair brings premium Vietnamese straight, super double-drawn hair bundles to South African women, plus answers to common hair questions.">
+    <meta name="keywords" content="about Glamour Girl Hair, Vietnamese straight hair brand, premium human hair South Africa, hair care FAQ, hair bundles that last">
+    <meta name="author" content="Glamour Girl Hair">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2F4A3D">
+    <link rel="canonical" href="https://glamour-girl-hair.netlify.app/about.html">
+
+    <!-- Open Graph + Twitter: control how the page looks when shared on social media -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Glamour Girl Hair">
+    <meta property="og:title" content="About Us | Glamour Girl Hair, Premium Hair in SA">
+    <meta property="og:description" content="Learn how Glamour Girl Hair brings premium Vietnamese straight, super double-drawn hair bundles to South African women, plus answers to common hair questions.">
+    <meta property="og:url" content="https://glamour-girl-hair.netlify.app/about.html">
+    <meta property="og:image" content="https://glamour-girl-hair.netlify.app/images/glamour-girl-hair-logo.jpeg">
+    <meta property="og:locale" content="en_ZA">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="icon" href="images/glamour-girl-hair-logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Marks the page as JavaScript-capable so CSS can enable tabs/accordion; without JS everything stays visible -->
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
+    <!-- Site header: logo + main navigation -->
     <header class="site-header">
-        <div class="logo">
-            <img src="images/glamour-logo.jpeg" alt="Glamour Girl Hair logo" class="logo-img">
+        <a class="logo" href="index.html">
+            <img src="images/glamour-girl-hair-logo.jpeg" alt="Glamour Girl Hair logo" class="logo-img" width="32" height="29">
             Glamour Girl Hair
-        </div>
-        <nav>
+        </a>
+        <nav aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="about.html" class="active" aria-current="page">About</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="enquiry.html">Enquiry</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -29,42 +49,105 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main">
         <section class="founder">
-            <img src="images/catalog-bundle-2.jfif" alt="Glamour Girl Hair bundle, hand-selected for quality">
+            <img src="images/deep-curly-hair-bundle-held-in-hand.jpg" alt="Hand holding a deep curly Glamour Girl Hair bundle, hand-selected for quality" width="388" height="515">
             <div>
                 <h1>Our Story</h1>
                 <p>Glamour Girl Hair was founded in 2022 with one goal: to bring premium Vietnamese
                    straight, super double-drawn hair bundles to South African women who want a luxury
                    look without the luxury markup.</p>
+                <p>Explore our full range on the <a class="text-link" href="products.html">products page</a>.</p>
             </div>
         </section>
 
-        <section class="mission">
-            <h2>Our Mission Vision</h2>
+        <section class="mission reveal">
+            <h2>Our Mission &amp; Vision</h2>
             <p>Our vision is to expand globally and become the most trusted and glamorous hair brand
                on the market. Our mission is to empower women to express their beauty, confidence and
                individuality through premium-quality human hair.</p>
         </section>
 
-        <section class="difference">
+        <section class="difference reveal">
             <h2>What Makes Us Different</h2>
             <ul>
-                <li>Genuine Vietnamese straight, super double-drawn bundles never chemically treated</li>
+                <li>Genuine Vietnamese straight, super double-drawn bundles, never chemically treated</li>
                 <li>Hair that lasts two to three years with proper care</li>
                 <li>Real reviews and before-and-after photos, not just stock imagery</li>
                 <li>Direct, personal service via WhatsApp</li>
             </ul>
         </section>
+
+        <!-- FAQ accordion: click a question to open its answer -->
+        <section class="faq reveal" aria-labelledby="faq-heading">
+            <h2 id="faq-heading">Frequently Asked Questions</h2>
+            <div class="accordion" data-accordion>
+                <div class="accordion-item">
+                    <h3><button type="button" class="accordion-trigger" id="faq-btn-1" aria-expanded="false" aria-controls="faq-1">How long does Glamour Girl Hair last?</button></h3>
+                    <div class="accordion-panel" id="faq-1" role="region" aria-labelledby="faq-btn-1">
+                        <div class="accordion-inner"><p>With proper care, our bundles are built to last two to three years.</p></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3><button type="button" class="accordion-trigger" id="faq-btn-2" aria-expanded="false" aria-controls="faq-2">Is the hair chemically treated?</button></h3>
+                    <div class="accordion-panel" id="faq-2" role="region" aria-labelledby="faq-btn-2">
+                        <div class="accordion-inner"><p>No. Our Vietnamese straight, super double-drawn bundles are naturally straight and never chemically treated.</p></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3><button type="button" class="accordion-trigger" id="faq-btn-3" aria-expanded="false" aria-controls="faq-3">How do I care for my bundles?</button></h3>
+                    <div class="accordion-panel" id="faq-3" role="region" aria-labelledby="faq-btn-3">
+                        <div class="accordion-inner"><p>Wash gently with a sulphate-free shampoo and conditioner, detangle from the ends upwards, and let the hair air-dry where you can. Heat tools should be used sparingly.</p></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3><button type="button" class="accordion-trigger" id="faq-btn-4" aria-expanded="false" aria-controls="faq-4">Do you offer professional installs?</button></h3>
+                    <div class="accordion-panel" id="faq-4" role="region" aria-labelledby="faq-btn-4">
+                        <div class="accordion-inner"><p>Yes. Tell us what you have in mind through the <a class="text-link" href="enquiry.html">enquiry form</a> and we will reply with a price and available dates.</p></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3><button type="button" class="accordion-trigger" id="faq-btn-5" aria-expanded="false" aria-controls="faq-5">Where are you based?</button></h3>
+                    <div class="accordion-panel" id="faq-5" role="region" aria-labelledby="faq-btn-5">
+                        <div class="accordion-inner"><p>We serve customers in Durban (KwaZulu-Natal) and Johannesburg (Gauteng). See the <a class="text-link" href="contact.html">contact page</a> for the map.</p></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3><button type="button" class="accordion-trigger" id="faq-btn-6" aria-expanded="false" aria-controls="faq-6">How do I order?</button></h3>
+                    <div class="accordion-panel" id="faq-6" role="region" aria-labelledby="faq-btn-6">
+                        <div class="accordion-inner"><p>Browse the <a class="text-link" href="products.html">products page</a>, then enquire about the bundle you like or message us directly on WhatsApp for personal service.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-band reveal">
+            <h2>Have a question we have not answered?</h2>
+            <p>We are happy to help with bundles, wigs and installs.</p>
+            <div class="cta-actions">
+                <a class="btn btn-light" href="enquiry.html">Make an Enquiry</a>
+            </div>
+        </section>
     </main>
 
-    <a href="https://wa.me/27000000000" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
+    <a href="https://wa.me/27000000000" class="whatsapp-float" aria-label="Chat with us on WhatsApp" target="_blank" rel="noopener noreferrer">
         WhatsApp Us
     </a>
 
     <footer class="site-footer">
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <p>Human hair bundles, wigs and installs in Durban and Johannesburg, South Africa.</p>
         <p>&copy; 2026 Glamour Girl Hair. All rights reserved.</p>
     </footer>
 
+    <script src="js/main.js" defer></script>
 </body>
 </html>
